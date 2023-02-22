@@ -12,10 +12,16 @@ class DetailEcoleComponent extends Component
     public $classe_id;
     public $nom;
     public $scolarite;
+    public $matiere;
+    public $titre;
+    public $description;
+    public $lieu;
+    public $date_de_debut;
+    public $date_de_fin;
+
     public function mount($id)
     {
         $this->ecole_id = $id;
-
     }
 
     public function resetInputFields()
@@ -27,6 +33,29 @@ class DetailEcoleComponent extends Component
         'classe_id',
         'nom',
         'scolarite',
+        ]);
+    }
+    public function resetInputFieldsEvent()
+    {
+        // Clean errors if were visible before
+        $this->resetErrorBag();
+        $this->resetValidation();
+        $this->reset([
+        'titre',
+        'description',
+        'lieu',
+        'date_de_debut',
+        'date_de_fin',
+        ]);
+    }
+    public function resetInputFieldsMatiere()
+    {
+        // Clean errors if were visible before
+        $this->resetErrorBag();
+        $this->resetValidation();
+        $this->reset([
+        'matiere',
+
         ]);
     }
     public function updated($fields)
@@ -89,6 +118,70 @@ class DetailEcoleComponent extends Component
         // return redirect()->route('dashboard.detail-classes',['id' => $this->ecole_id]);
 
     }
+    public function saveEvent()
+    {
+
+        $this->validate([
+            'titre' => 'required',
+            'description' => 'required',
+            'lieu' => 'required',
+            'date_de_debut' => 'required',
+            'date_de_fin' => 'required',
+        ]);
+
+        $token = Session::get('api_token');
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer '.$token,
+        ])->post('https://myschool.herokuapp.com/api/schools/'.$this->ecole_id.'/events', [
+            'titre' => $this->titre,
+            'description' => $this->description,
+            'date_de_debut' => $this->date_de_debut,
+            'lieu' => $this->lieu,
+            'date_de_fin' => $this->date_de_fin,
+        ]);
+        // dd($response['success']);
+
+        if ($response->successful()) {
+            session()->flash('message', 'Enregistrement effectué avec succès.');
+        } else {
+            session()->flash('message', 'Enregistrement echoué.');
+        }
+
+
+        $this->resetInputFieldsEvent();
+        $this->emit('saveEvent');
+        back();
+        // return redirect()->route('dashboard.detail-classes',['id' => $this->ecole_id]);
+
+    }
+    public function saveMatiere()
+    {
+
+        $this->validate([
+            'matiere' => 'required',
+        ]);
+
+        $token = Session::get('api_token');
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer '.$token,
+        ])->post('https://myschool.herokuapp.com/api/schools/'.$this->ecole_id.'/matieres', [
+            'matiere' => $this->matiere,
+
+        ]);
+
+        if ($response->successful()) {
+            session()->flash('message', 'Enregistrement effectué avec succès.');
+        } else {
+            session()->flash('message', 'Enregistrement echoué.');
+        }
+
+
+        $this->resetInputFieldsMatiere();
+        $this->emit('saveMatiere');
+        back();
+        // return redirect()->route('dashboard.detail-classes',['id' => $this->ecole_id]);
+
+    }
 
     public function getElementById($id)
     {
@@ -112,6 +205,42 @@ class DetailEcoleComponent extends Component
         session()->flash('message', 'cet utilisateur à été supprimer.');
         return redirect()->route('dashboard.detail-classes',['id' => $this->ecole_id]);
 
+
+
+    }
+    public function deleteEvent($id)
+    {
+        $token = Session::get('api_token');
+        // dd($token);
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer '.$token,
+        ])->delete('https://myschool.herokuapp.com/api/events'.$id);
+        session()->flash('message', 'cet utilisateur à été supprimer.');
+        back();
+
+
+    }
+    public function deleteStudent($id)
+    {
+        $token = Session::get('api_token');
+        // dd($token);
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer '.$token,
+        ])->delete('https://myschool.herokuapp.com/api/students'.$id);
+        session()->flash('message', 'cet utilisateur à été supprimer.');
+        back();
+
+
+    }
+    public function deleteMatiere($id)
+    {
+        $token = Session::get('api_token');
+        // dd($token);
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer '.$token,
+        ])->delete('https://myschool.herokuapp.com/api/matieres'.$id);
+        session()->flash('message', 'cet utilisateur à été supprimer.');
+        back();
 
 
     }
@@ -163,22 +292,25 @@ class DetailEcoleComponent extends Component
         ])->get('https://myschool.herokuapp.com/api/schools/'.$this->ecole_id.'/events');
 
         $response = json_decode($response->getBody());
-        $events = $response;
+        $events = $response->response;
         if (!$response->success)
         {
             $events = "";
         }
-        // foreach($events as $events)
+        // foreach($events as $event)
         // {
-        //     dd($events->titre);
+        //     dd($event);
 
         // }
+        $user_auth = Session::get('user_auth');
+
 
         return view('livewire.dashboard.ecole.detail-ecole-component',[
             'classes' => $classes,
             'students' => $students,
             'matieres' => $matieres,
             'events' => $events,
+            'user_auth' => $user_auth,
         ])->layout('layouts.dash');
     }
 }

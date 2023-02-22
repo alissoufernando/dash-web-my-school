@@ -25,8 +25,11 @@ class DetailUserComponent extends Component
         // {
         //     dd($student);
         // }
+        $user_auth = Session::get('user_auth');
+
         return view('livewire.dashboard.utilisateurs.detail-user-component',[
             'students' => $students,
+            'user_auth' => $user_auth
         ]);
     }
 }

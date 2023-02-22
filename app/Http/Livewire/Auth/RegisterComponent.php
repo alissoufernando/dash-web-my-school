@@ -38,7 +38,7 @@ class RegisterComponent extends Component
         ]);
 
         if ($response->successful()) {
-            return redirect()->route('dashboard.liste-users');
+            return redirect()->route('login');
         } else {
 
             session()->flash('message', 'Connexion à échoué.');

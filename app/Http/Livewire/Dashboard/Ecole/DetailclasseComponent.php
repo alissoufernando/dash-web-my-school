@@ -145,8 +145,11 @@ class DetailclasseComponent extends Component
         //     dd($student->nom);
 
         // }
+        $user_auth = Session::get('user_auth');
+
         return view('livewire.dashboard.ecole.detailclasse-component',[
             'students'=> $students,
+            'user_auth' => $user_auth
         ])->layout('layouts.dash');
     }
 }

@@ -59,7 +59,6 @@ class ListeUsersComponent extends Component
     }
     public function saveUser()
     {
-        // dd('ok');
         if ($this->user_id) {
             $this->validate([
                 'nom' => 'required',
@@ -82,6 +81,7 @@ class ListeUsersComponent extends Component
 
             ]);
         }
+        // dd('ok');
 
         $response = Http::post('https://myschool.herokuapp.com/api/signup', [
             'nom' => $this->nom,
@@ -91,7 +91,7 @@ class ListeUsersComponent extends Component
             'email' => $this->email,
             'mot_de_passe' => $this->mot_de_passe,
         ]);
-
+            // dd($response['message']);
 
         if ($response->successful()) {
             if ($this->user_id) {
@@ -113,7 +113,7 @@ class ListeUsersComponent extends Component
         $this->resetInputFields();
         $this->emit('saveUser');
 
-        return redirect()->route('dashboard.liste-users');
+        back();
 
 
     }
@@ -160,8 +160,11 @@ class ListeUsersComponent extends Component
         //     dd($data);
 
         // }
+        $user_auth = Session::get('user_auth');
+
         return view('livewire.dashboard.utilisateurs.liste-users-component',[
             'datas' => $datas,
+            'user_auth' => $user_auth,
         ])->layout('layouts.dash');
     }
 }

@@ -29,8 +29,11 @@ class LoginComponent extends Component
         if ($response->successful()) {
             $apiToken = $response["token"];
             Session::put('api_token', $apiToken);
-            // $token = Session::get('api_token');
-            // dd($token);
+            Session::put('user_auth', $response['user']);
+
+
+            // $token = Session::get('user_auth');
+            // dd(Session::get('user_auth'));
             return redirect()->route('dashboard.liste-users');
 
         } else {

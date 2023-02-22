@@ -74,7 +74,7 @@ class ListeEcoleComponent extends Component
             'email' => $this->email,
         ]);
 
-        
+
 
         if ($response->successful()) {
             if ($this->ecole_id) {
@@ -144,8 +144,11 @@ class ListeEcoleComponent extends Component
         //     dd($data);
 
         // }
+        $user_auth = Session::get('user_auth');
+
         return view('livewire.dashboard.ecole.liste-ecole-component',[
             "datas" => $datas,
+            'user_auth' => $user_auth
         ])->layout('layouts.dash');
     }
 }

@@ -77,13 +77,6 @@
                                                 <img src="{{ asset('assets/dash/images/icon/call-2.svg') }}" alt="call-2">
                                             </a>
                                         </li>
-                                        <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Modification" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" wire:click.prevent='getElementById({{$classe->id}})'>
-                                                <img src="{{ asset('assets/dash/images/icon/call-2.svg') }}" alt="call-2">
-
-                                            </a>
-
-                                        </li>
 
                                         <li>
                                             <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Supprimer" href="#" wire:click.prevent="deleteStudent({{$classe->id}})">
@@ -110,7 +103,7 @@
                     <div class="others-title">
                         <h3 class="d-inline">Listes des matiere</h3>
 
-                        <a type="button" class="btn  btn-info btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        <a type="button" class="btn  btn-info btn-sm float-end" data-bs-toggle="modal" data-bs-target="#Matiere">
                             Ajouter
                         </a>
                     </div>
@@ -146,21 +139,9 @@
                                 </td>
                                 <td>
                                     <ul class="d-flex justify-content-betweens">
-                                        <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Détails" href="{{route('dashboard.datail-classes',['id' => $matiere->id])}}">
-                                                <img src="{{ asset('assets/dash/images/icon/call-2.svg') }}" alt="call-2">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Modification" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" wire:click.prevent='getElementById({{$matiere->id}})'>
-                                                <img src="{{ asset('assets/dash/images/icon/call-2.svg') }}" alt="call-2">
-
-                                            </a>
-
-                                        </li>
 
                                         <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Supprimer" href="#" wire:click.prevent="deleteStudent({{$matiere->id}})">
+                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Supprimer" href="#" wire:click.prevent="deletematiere({{$matiere->id}})">
                                                 <img src="{{ asset('assets/dash/images/icon/trash-2.svg') }}" alt="trash-2">
                                             </a>
 
@@ -182,10 +163,6 @@
                 <div class="table-responsive" data-simplebar>
                     <div class="others-title">
                         <h3 class="d-inline">Listes des students</h3>
-
-                        <a type="button" class="btn  btn-info btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
-                            Ajouter
-                        </a>
                     </div>
 
                     <table class="table align-middle mb-0">
@@ -230,21 +207,11 @@
                                 </td>
                                 <td>
                                     <ul class="d-flex justify-content-betweens">
-                                        <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Détails" href="{{route('dashboard.datail-ecoles',['id' => $student->id])}}">
-                                                <img src="{{ asset('assets/dash/images/icon/call-2.svg') }}" alt="call-2">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Modification" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" wire:click.prevent='getElementById({{$student->id}})'>
-                                                <img src="{{ asset('assets/dash/images/icon/call-2.svg') }}" alt="call-2">
 
-                                            </a>
 
-                                        </li>
 
                                         <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Supprimer" href="#" wire:click.prevent="deleteClasse({{$student->id}})">
+                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Supprimer" href="#" wire:click.prevent="deleteStudent({{$student->id}})">
                                                 <img src="{{ asset('assets/dash/images/icon/trash-2.svg') }}" alt="trash-2">
                                             </a>
 
@@ -267,7 +234,7 @@
                     <div class="others-title">
                         <h3 class="d-inline">Listes des events</h3>
 
-                        <a type="button" class="btn  btn-info btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        <a type="button" class="btn  btn-info btn-sm float-end" data-bs-toggle="modal" data-bs-target="#event">
                             Ajouter
                         </a>
                     </div>
@@ -296,11 +263,11 @@
                                     {{ $i++ }}
                                 </td>
                                 <td>
-                                    {{ $event->titre }}
+                                    {{ $event->motif }}
                                 </td>
 
                                 <td>
-                                    {{ $event->description }}
+                                    {{ $event->contenu }}
                                 </td>
 
                                 <td>
@@ -308,29 +275,18 @@
                                 </td>
 
                                 <td>
-                                    {{ $event->date_de_debut }}
+                                    {{ $event->date_debut_evenement }}
                                 </td>
 
                                 <td>
-                                    {{ $event->date_de_fin }}
+                                    {{ $event->date_fin_evenement }}
                                 </td>
                                 <td>
                                     <ul class="d-flex justify-content-betweens">
-                                        <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Détails" href="{{route('dashboard.datail-classes',['id' => $event->id])}}">
-                                                <img src="{{ asset('assets/dash/images/icon/call-2.svg') }}" alt="call-2">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Modification" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" wire:click.prevent='getElementById({{$event->id}})'>
-                                                <img src="{{ asset('assets/dash/images/icon/call-2.svg') }}" alt="call-2">
 
-                                            </a>
-
-                                        </li>
 
                                         <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Supprimer" href="#" wire:click.prevent="deleteStudent({{$event->id}})">
+                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Supprimer" href="#" wire:click.prevent="deleteEvent({{$event->id}})">
                                                 <img src="{{ asset('assets/dash/images/icon/trash-2.svg') }}" alt="trash-2">
                                             </a>
 
@@ -356,6 +312,8 @@
         <!-- End Footer Area -->
     </main>
     @include('livewire.dashboard.ecole.modalClasse')
+    @include('livewire.dashboard.ecole.modalEvent')
+    @include('livewire.dashboard.ecole.modalMatiere')
 
 </div>
 @section('scripts')

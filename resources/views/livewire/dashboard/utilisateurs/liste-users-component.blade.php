@@ -76,11 +76,6 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Modification" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" wire:click.prevent='getElementById({{$data['id']}})'>
-                                                <img src="{{ asset('assets/dash/images/icon/call-2.svg') }}" alt="call-2">
-                                            </a>
-                                        </li>
-                                        <li>
                                             <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Supprimer" href="#" wire:click.prevent="deleteUser({{$data['id']}})">
                                                 <img src="{{ asset('assets/dash/images/icon/trash-2.svg') }}" alt="trash-2">
                                             </a>

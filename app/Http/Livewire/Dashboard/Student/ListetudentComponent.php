@@ -30,9 +30,12 @@ class ListetudentComponent extends Component
         //     dd($matieres->nom);
 
         // }
+        $user_auth = Session::get('user_auth');
+
         return view('livewire.dashboard.student.listetudent-component',[
             'matieres' => $matieres,
-            'students' => $students
+            'students' => $students,
+            'user_auth' => $user_auth
         ])->layout('layouts.dash');
     }
 }

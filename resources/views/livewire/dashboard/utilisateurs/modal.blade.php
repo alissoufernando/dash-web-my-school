@@ -48,8 +48,8 @@
                                     <div class="mb-3">
                                         <select name="" class="form-control" id="" wire:model.lazy='sexe'>
                                             <option value="" selected>Choisir votre sexe</option>
-                                            <option value="Masculin">Masculin</option>
-                                            <option value="Feminin">Feminin</option>
+                                            <option value="M">Masculin</option>
+                                            <option value="F">Feminin</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">

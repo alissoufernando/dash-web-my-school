@@ -289,7 +289,8 @@
                         <a class="dropdown-item dropdown-toggle avatar d-flex align-items-center" href="lms-academy.html#" id="navbarDropdown-4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{ asset('assets/dash/images/avatar.png') }}" alt="avatar">
                             <div class="d-none d-lg-block d-md-block">
-                                <h3>John Smilga</h3>
+
+                                <h3> John Smilga</h3>
                                 <span>Super Admin</span>
                             </div>
                         </a>

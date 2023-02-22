@@ -28,8 +28,8 @@
                             <div class="form-group mb-24 icon">
                                 <select name="" class="form-control" id="" wire:model="sexe">
                                     <option value="" selected>Choisir votre sexe</option>
-                                    <option value="Masculin">Masculin</option>
-                                    <option value="Feminin">Feminin</option>
+                                    <option value="M">Masculin</option>
+                                    <option value="F">Feminin</option>
                                 </select>
                                 <img src="assets/dash/images/icon/user-square.svg" alt="user-square">
                             </div>
