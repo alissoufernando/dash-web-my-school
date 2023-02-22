@@ -9,13 +9,13 @@
 		<!-- Link Of CSS -->
         @include('livewire.dashboard.partials.style')
         @livewireStyles()
-		<title>GES3D - Admin</title>
+		<title>My School</title>
     </head>
 
     <body class="body-bg-f8faff">
 		<!-- Start Preloader Area -->
 		<div class="preloader">
-            <img src="{{ asset('assets/site/images/ewaste.png') }}" alt="main-logo" width="100" height="100">
+            <img src="{{ asset('assets/dash/images/logo.png') }}" alt="main-logo" width="100" height="100">
         </div>
 		<!-- End Preloader Area -->
 

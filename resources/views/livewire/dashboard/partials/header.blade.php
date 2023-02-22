@@ -11,12 +11,12 @@
 
                     <div class="main-logo">
                         <a href="/">
-                            <img src="{{ asset('assets/site/images/ewaste.png') }}" alt="main-logo" width="100" height="100">
+                            <img src="{{ asset('assets/dash/images/logo.png') }}" alt="main-logo" width="100" height="100">
                         </a>
                     </div>
 
                     <form class="search-bar d-flex">
-                        <img src="assets/dash/images/icon/search-normal.svg" alt="search-normal">
+                        <img src="{{ asset('assets/dash/images/icon/search-normal.svg') }}" alt="search-normal">
 
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                     </form>
@@ -42,13 +42,13 @@
                 <div class="header-right-content d-flex align-items-center">
                     <div class="header-right-option">
                         <a href="lms-academy.html#" class="dropdown-item fullscreen-btn" id="fullscreen-button">
-                            <img src="assets/dash/images/icon/maximize.svg" alt="maximize">
+                            <img src="{{ asset('assets/dash/images/icon/maximize.svg') }}" alt="maximize">
                         </a>
                     </div>
 
                     <div class="header-right-option dropdown apps-option">
                         <button class="dropdown-item dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="assets/dash/images/icon/app.svg" alt="apps">
+                            <img src="{{ asset('assets/dash/images/icon/app.svg') }}" alt="apps">
                         </button>
 
                         <div class="dropdown-menu">
@@ -60,22 +60,22 @@
                             <div class="dropdown-wrap" data-simplebar>
                                 <div class="d-flex flex-wrap align-items-center">
                                     <a href="lms-academy.html#" class="dropdown-item">
-                                        <img src="assets/dash/images/apps/icon-account.png" alt="icon-account">
+                                        <img src="{{ asset('assets/dash/images/apps/icon-account.png') }}" alt="icon-account">
                                         <span class="d-block mb-0">Account</span>
                                     </a>
 
                                     <a href="lms-academy.html#" class="dropdown-item">
-                                        <img src="assets/dash/images/apps/icon-google.png" alt="icon-google">
+                                        <img src="{{ asset('assets/dash/images/apps/icon-google.png') }}" alt="icon-google">
                                         <span class="d-block mb-0">Search</span>
                                     </a>
 
                                     <a href="lms-academy.html#" class="dropdown-item">
-                                        <img src="assets/dash/images/apps/icon-map.png" alt="icon-map">
+                                        <img src="{{ asset('assets/dash/images/apps/icon-map.png') }}" alt="icon-map">
                                         <span class="d-block mb-0">Maps</span>
                                     </a>
 
                                     <a href="lms-academy.html#" class="dropdown-item">
-                                        <img src="assets/dash/images/apps/icon-youtube.png" alt="icon-youtube">
+                                        <img src="{{ asset('assets/dash/images/apps/icon-youtube.png') }}" alt="icon-youtube">
                                         <span class="d-block mb-0">YouTube</span>
                                     </a>
 
@@ -287,7 +287,7 @@
 
                     <div class="header-right-option dropdown profile-nav-item pt-0 pb-0">
                         <a class="dropdown-item dropdown-toggle avatar d-flex align-items-center" href="lms-academy.html#" id="navbarDropdown-4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="assets/dash/images/avatar.png" alt="avatar">
+                            <img src="{{ asset('assets/dash/images/avatar.png') }}" alt="avatar">
                             <div class="d-none d-lg-block d-md-block">
                                 <h3>John Smilga</h3>
                                 <span>Super Admin</span>
@@ -297,7 +297,7 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-header d-flex flex-column align-items-center">
                                 <div class="figure mb-3">
-                                    <img src="assets/dash/images/avatar.png" class="rounded-circle" alt="avatar">
+                                    <img src="{{ asset('assets/dash/images/avatar.png') }}" class="rounded-circle" alt="avatar">
                                 </div>
 
                                 <div class="info text-center">
@@ -355,7 +355,7 @@
 
                     <div class="header-right-option template-option">
                         <a class="dropdown-item" href="lms-academy.html#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                            <img src="assets/dash/images/icon/setting.svg" alt="setting">
+                            <img src="{{ asset('assets/dash/images/icon/setting.svg') }}" alt="setting">
                         </a>
                     </div>
                 </div>

@@ -1,74 +1,33 @@
+<!doctype html>
+<html lang="zxx">
+    <head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <!--
-    meta tags
-    -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		@include('livewire.dashboard.partials.style')
+        @livewireStyles()
+		<!-- Title -->
+		<title>My School</title>
+    </head>
 
-    <!--
-    title tag
-    -->
-    <title>GES-3D</title>
+    <body class="body-bg-f8faff">
+		<!-- Start Preloader Area -->
+		<div class="preloader">
+            <img src="{{ asset('assets/site/images/ewaste.png') }}" alt="main-logo" width="100" height="100">
+        </div>
+		<!-- End Preloader Area -->
 
-    <!--
-    favicon
-    -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/site/images/ewaste.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/site/images/ewaste.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/site/images/ewaste.png') }}">
-    <link rel="manifest" href="{{ asset('assets/site/images/favicon/site.webmanifest.html') }}">
+		{{ $slot }}
 
-    <!--
-    stylesheets
-    -->
-    @include('livewire.site.partials.style')
-    @livewireStyles()
-</head>
-<body>
+		<!-- Start Go Top Area -->
+		<div class="go-top">
+			<i class="ri-arrow-up-s-fill"></i>
+			<i class="ri-arrow-up-s-fill"></i>
+		</div>
+		<!-- End Go Top Area -->
 
-    <div class="main-wrapper">
-
-    <!--
-    preloader - start
-    -->
-    @include('livewire.site.partials.preloader')
-
-    <!--
-    preloader - end
-    -->
-
-    <!--
-    navigation - start
-    -->
-    @include('livewire.site.partials.header')
-
-    <!--
-    navigation - end
-    -->
-    {{-- start contenu --}}
-    {{$slot}}
-    {{-- end contenu --}}
-
-    <!--
-    footer - start
-    -->
-    @include('livewire.site.partials.footer')
-
-    <!--
-    footer - end
-    -->
-
-    </div>
-
-    <!--
-    scripts
-    -->
-
-    @livewireScripts()
-    @include('livewire.site.partials.script')
-</body>
+        @livewireScripts()
+        @include('livewire.dashboard.partials.script')
+    </body>
 </html>

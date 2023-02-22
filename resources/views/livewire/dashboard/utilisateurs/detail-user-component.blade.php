@@ -1,7 +1,7 @@
 <div>
     <main class="main-content-wrap style-two">
         <!-- Start Page Title Area -->
-        <div class="page-title-area mt-5">
+        <div class="page-title-area">
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-sm-6">
@@ -16,6 +16,8 @@
                         <ul class="page-title-list">
                             <li>Dashboard</li>
                             <li>Utilisateur</li>
+                            <li>Déatail</li>
+
                         </ul>
                     </div>
                 </div>
@@ -28,11 +30,11 @@
             <div class="container-fluid">
                 <div class="table-responsive" data-simplebar>
                     <div class="others-title">
-                        <h3 class="d-inline">Listes des utilisateurs</h3>
-                        <a type="button" class="btn  btn-info btn-sm float-end d-inline" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        <h3 class="d-inline">Listes de ses enfants</h3>
+
+                        <a type="button" class="btn  btn-info btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
                             Ajouter
                         </a>
-
                     </div>
 
                     <table class="table align-middle mb-0">
@@ -104,7 +106,7 @@
 
         <!-- End Footer Area -->
     </main>
-    @include('livewire.dashboard.utilisateurs.modal')
+    {{-- @include('livewire.dashboard.utilisateurs.modal') --}}
 
 </div>
 @section('scripts')

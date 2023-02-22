@@ -1,107 +1,94 @@
 <?php
 
-namespace App\Http\Livewire\Dashboard\Utilisateurs;
+namespace App\Http\Livewire\Dashboard\Ecole;
 
-use GuzzleHttp\Client;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
-class ListeUsersComponent extends Component
+class DetailclasseComponent extends Component
 {
-    public $user_id;
+    public $classe_id;
+    public $student_id;
     public $nom;
     public $prenoms;
-    public $sexe;
-    public $tel;
-    public $email;
-    public $mot_de_passe;
+    public $nom_prenoms_pere;
+    public $nom_prenoms_mere;
 
+    public function mount($id)
+    {
+        $this->classe_id = $id;
+
+    }
     public function resetInputFields()
     {
         // Clean errors if were visible before
         $this->resetErrorBag();
         $this->resetValidation();
         $this->reset([
-        'user_id',
+        'student_id',
         'nom',
         'prenoms',
-        'sexe',
-        'tel',
-        'email',
-        'mot_de_passe',
+        'nom_prenoms_pere',
+        'nom_prenoms_mere',
         ]);
     }
     public function updated($fields)
     {
-        if ($this->user_id) {
+        if ($this->student_id) {
             $this->validateOnly($fields, [
                 'nom' => 'required',
                 'prenoms' => 'required',
-                'tel' => 'required',
-                'sexe' => 'required',
-                'email' => 'required|email',
-                'mot_de_passe' => 'required',
-
+                'nom_prenoms_pere' => 'required',
+                'nom_prenoms_mere' => 'required',
             ]);
         } else {
             $this->validateOnly($fields, [
                 'nom' => 'required',
                 'prenoms' => 'required',
-                'tel' => 'required',
-                'sexe' => 'required',
-                'email' => 'required|email',
-                'mot_de_passe' => 'required',
-
-
+                'nom_prenoms_pere' => 'required',
+                'nom_prenoms_mere' => 'required',
             ]);
         }
     }
-    public function saveUser()
+    public function saveStudent()
     {
         // dd('ok');
-        if ($this->user_id) {
+        if ($this->student_id) {
             $this->validate([
                 'nom' => 'required',
                 'prenoms' => 'required',
-                'tel' => 'required',
-                'sexe' => 'required',
-                'email' => 'required|email',
-                'mot_de_passe' => 'required',
-
-
+                'nom_prenoms_pere' => 'required',
+                'nom_prenoms_mere' => 'required',
             ]);
         } else {
             $this->validate([
                 'nom' => 'required',
                 'prenoms' => 'required',
-                'tel' => 'required',
-                'sexe' => 'required',
-                'email' => 'required|email',
-                'mot_de_passe' => 'required',
-
+                'nom_prenoms_pere' => 'required',
+                'nom_prenoms_mere' => 'required',
             ]);
         }
-
-        $response = Http::post('https://myschool.herokuapp.com/api/signup', [
+        $token = Session::get('api_token');
+        // dd($token);
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer '.$token,
+        ])->post('https://myschool.herokuapp.com/api/classes/'.$this->classe_id.'/students', [
             'nom' => $this->nom,
             'prenoms' => $this->prenoms,
-            'tel' => $this->tel,
-            'sexe' => $this->sexe,
-            'email' => $this->email,
-            'mot_de_passe' => $this->mot_de_passe,
+            'nom_prenoms_pere' => $this->nom_prenoms_pere,
+            'nom_prenoms_mere' => $this->nom_prenoms_mere,
         ]);
 
-
         if ($response->successful()) {
-            if ($this->user_id) {
+            if ($this->student_id) {
                 session()->flash('message', 'Modification effectuée avec succès.');
             } else {
 
                 session()->flash('message', 'Enregistrement effectué avec succès.');
             }
         } else {
-            if ($this->user_id) {
+            if ($this->student_id) {
                 session()->flash('message', 'Modification echoué.');
             } else {
 
@@ -111,39 +98,35 @@ class ListeUsersComponent extends Component
 
 
         $this->resetInputFields();
-        $this->emit('saveUser');
-
-        return redirect()->route('dashboard.liste-users');
-
+        $this->emit('saveStudent');
+        back();
+        // return redirect()->route('dashboard.detail-classes',['id' => $this->ecole_id]);
 
     }
 
     public function getElementById($id)
     {
-        $this->user_id = $id;
+        $this->student_id = $id;
         $token = Session::get('api_token');
         // dd($token);
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.$token,
-        ])->delete('https://myschool.herokuapp.com/api/users'.$id);
-        $user = json_decode($response->getBody());
-        $this->nom = $user->nom;
-        $this->prenoms = $user->prenoms;
-        $this->sexe = $user->sexe;
-        $this->tel = $user->tel;
-        $this->email = $user->email;
-
+        ])->delete('https://myschool.herokuapp.com/api/students/'.$id);
+        $classe = json_decode($response->getBody());
+        $this->nom = $classe->nom;
+        $this->prenoms = $classe->prenoms;
+        $this->nom_prenoms_pere = $classe->nom_prenoms_pere;
+        $this->nom_prenoms_mere = $classe->nom_prenoms_mere;
     }
-    public function deleteUser($id)
+    public function deleteStudent($id)
     {
         $token = Session::get('api_token');
         // dd($token);
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.$token,
-        ])->delete('https://myschool.herokuapp.com/api/users'.$id);
+        ])->delete('https://myschool.herokuapp.com/api/students'.$id);
         session()->flash('message', 'cet utilisateur à été supprimer.');
-        return redirect()->route('dashboard.liste-users');
-
+        back();
 
 
     }
@@ -153,15 +136,17 @@ class ListeUsersComponent extends Component
         // dd($token);
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.$token,
-        ])->get('https://myschool.herokuapp.com/api/users');
-        $datas = json_decode($response->getBody(), true);
-        // foreach($datas as $data)
+        ])->get('https://myschool.herokuapp.com/api/classes/'.$this->classe_id.'/students');
+
+        $response = json_decode($response->getBody());
+        $students = $response->response;
+        // foreach($students as $student)
         // {
-        //     dd($data);
+        //     dd($student->nom);
 
         // }
-        return view('livewire.dashboard.utilisateurs.liste-users-component',[
-            'datas' => $datas,
+        return view('livewire.dashboard.ecole.detailclasse-component',[
+            'students'=> $students,
         ])->layout('layouts.dash');
     }
 }

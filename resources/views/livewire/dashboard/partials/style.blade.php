@@ -20,9 +20,9 @@
 <link rel="stylesheet" href="{{ asset('assets/dash/css/responsive.css') }}">
 
 <!-- Favicon -->
-<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/site/images/ewaste.png') }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/site/images/ewaste.png') }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/site/images/ewaste.png') }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/dash/images/logo.png') }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/dash/images/logo.png') }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/dash/images/logo.png') }}">
 <!-- Title -->
 @yield('style')
 

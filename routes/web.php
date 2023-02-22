@@ -1,26 +1,16 @@
 <?php
 
-use App\Http\Livewire\Dashboard\Agents\AddAgentsComponent;
-use App\Http\Livewire\Dashboard\Agents\EditAgentsComponent;
-use App\Http\Livewire\Dashboard\Agents\ListeAgentsComponent;
-use App\Http\Livewire\Dashboard\Alerts\ListeAlertComponent;
-use App\Http\Livewire\Dashboard\Articles\AddArticleComponent;
-use App\Http\Livewire\Dashboard\Articles\EditArticleComponent;
-use App\Http\Livewire\Dashboard\Articles\ListeArticleComponent;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Site\WelcomeComponent;
+use App\Http\Livewire\Auth\LoginComponent;
+use App\Http\Livewire\Auth\RegisterComponent;
 use App\Http\Livewire\Dashboard\DashboardComponent;
-use App\Http\Livewire\Dashboard\Products\ListeProductComponent;
-use App\Http\Livewire\Dashboard\Utilisateurs\AddUserComponent;
-use App\Http\Livewire\Dashboard\Utilisateurs\EditUserComponent;
+use App\Http\Livewire\Dashboard\Ecole\DetailclasseComponent;
+use App\Http\Livewire\Dashboard\Ecole\DetailEcoleComponent;
+use App\Http\Livewire\Dashboard\Ecole\ListeEcoleComponent;
+use App\Http\Livewire\Dashboard\Utilisateurs\DetailUserComponent;
 use App\Http\Livewire\Dashboard\Utilisateurs\ListeUsersComponent;
-use App\Http\Livewire\Site\AboutComponent;
-use App\Http\Livewire\Site\AlertComponent;
-use App\Http\Livewire\Site\BoutiqueComponent;
-use App\Http\Livewire\Site\ContactComponent;
-use App\Http\Livewire\Site\LoginComponent;
-use App\Http\Livewire\Site\RegisterComponent;
-use App\Http\Livewire\Site\SensiblisationComponent;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +29,13 @@ Route::get('/', function () {
 Route::get('/dashboard', DashboardComponent::class)->name('dashboard');
 
 Route::get('/users', ListeUsersComponent::class)->name('dashboard.liste-users');
-Route::get('/user', AddUserComponent::class)->name('dashboard.add-users');
-Route::get('/useredit', EditUserComponent::class)->name('dashboard.edit-users');
+Route::get('/users/{id}', DetailUserComponent::class)->name('dashboard.datail-users');
+Route::get('/ecoles', ListeEcoleComponent::class)->name('dashboard.liste-ecoles');
+Route::get('/ecoles/{id}', DetailEcoleComponent::class)->name('dashboard.datail-ecoles');
+Route::get('/classes/{id}', DetailclasseComponent::class)->name('dashboard.datail-classes');
+// Auth
+Route::get('/login', LoginComponent::class)->name('login');
+Route::get('/register', RegisterComponent::class)->name('register');
 
 
 
