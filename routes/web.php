@@ -7,6 +7,7 @@ use App\Http\Livewire\Auth\RegisterComponent;
 use App\Http\Livewire\Dashboard\DashboardComponent;
 use App\Http\Livewire\Dashboard\Ecole\DetailclasseComponent;
 use App\Http\Livewire\Dashboard\Ecole\DetailEcoleComponent;
+use App\Http\Livewire\Dashboard\Ecole\DetailStudentComponent;
 use App\Http\Livewire\Dashboard\Ecole\ListeEcoleComponent;
 use App\Http\Livewire\Dashboard\Utilisateurs\DetailUserComponent;
 use App\Http\Livewire\Dashboard\Utilisateurs\ListeUsersComponent;
@@ -33,6 +34,7 @@ Route::get('/users/{id}', DetailUserComponent::class)->name('dashboard.datail-us
 Route::get('/ecoles', ListeEcoleComponent::class)->name('dashboard.liste-ecoles');
 Route::get('/ecoles/{id}', DetailEcoleComponent::class)->name('dashboard.datail-ecoles');
 Route::get('/classes/{id}', DetailclasseComponent::class)->name('dashboard.datail-classes');
+Route::get('/students/{id}', DetailStudentComponent::class)->name('dashboard.datail-students');
 // Auth
 Route::get('/login', LoginComponent::class)->name('login');
 Route::get('/register', RegisterComponent::class)->name('register');

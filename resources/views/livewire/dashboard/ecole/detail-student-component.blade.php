@@ -17,7 +17,8 @@
                             <li>Dashboard</li>
                             <li>Ecoles</li>
                             <li>Classes</li>
-                            <li>Student</li>
+                            <li>Students</li>
+                            <li>Notes</li>
                         </ul>
                     </div>
                 </div>
@@ -30,62 +31,43 @@
             <div class="container-fluid">
                 <div class="table-responsive" data-simplebar>
                     <div class="others-title">
-                        <h3 class="d-inline">Listes des etudants</h3>
+                        <h3 class="d-inline">Listes des Notes</h3>
 
-                        <a type="button" class="btn  btn-info btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        <a type="button" class="btn  btn-info btn-sm float-end" data-bs-toggle="modal" data-bs-target="#note">
                             Ajouter
                         </a>
                     </div>
 
                     <table class="table align-middle mb-0">
-                        <thead>
+                        {{-- <thead>
                             <tr>
                                 <th class="">N°</th>
                                 <th class="">Numero</th>
                                 <th class="">Adresse</th>
                                 <th class="">Actions</th>
                             </tr>
-                        </thead>
+                        </thead> --}}
                         <tbody>
                             @php
                                 $i = 1;
                             @endphp
-                            @foreach ($students as $student)
+                            @foreach ($notes as $note)
                             <tr>
                                 <td>
                                     {{ $i++ }}
                                 </td>
                                 <td>
-                                    {{ $student->nom }}
+                                    {{ $note->type }}
                                 </td>
 
                                 <td>
-                                    {{ $student->prenoms }}
-                                </td>
-                                <td>
-                                    {{ $student->nom_prenoms_pere }}
+                                    {{ $note->note }}
                                 </td>
 
-                                <td>
-                                    {{ $student->nom_prenoms_mere }}
-                                </td>
                                 <td>
                                     <ul class="d-flex justify-content-betweens">
                                         <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Détails" href="{{route('dashboard.datail-students',['id' => $student->id])}}">
-                                                <img src="{{ asset('assets/dash/images/icon/call-2.svg') }}" alt="call-2">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Modification" href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" wire:click.prevent='getElementById({{$student->id}})'>
-                                                <img src="{{ asset('assets/dash/images/icon/call-2.svg') }}" alt="call-2">
-
-                                            </a>
-
-                                        </li>
-
-                                        <li>
-                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Supprimer" href="#" wire:click.prevent="deleteClasse({{$student->id}})">
+                                            <a type="button" data-container="body" data-toggle="popover" data-placement="top" title="Supprimer" href="#" wire:click.prevent="deleteNote({{$note->id}})">
                                                 <img src="{{ asset('assets/dash/images/icon/trash-2.svg') }}" alt="trash-2">
                                             </a>
 
@@ -108,7 +90,7 @@
 
         <!-- End Footer Area -->
     </main>
-    @include('livewire.dashboard.ecole.modalStudent')
+    @include('livewire.dashboard.ecole.modalNote')
 
 </div>
 @section('scripts')
